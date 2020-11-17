@@ -14,8 +14,9 @@ public class ReadFile {
             Scanner input = new Scanner(System.in);
             String filename = input.next();
             File f = new File(filename);
-            if (!f.isFile())
+            if (!f.isFile() || !f.canRead() || !f.exists())
                 throw new FileNotFoundException();
+
 
             int option;
             do {
@@ -74,7 +75,8 @@ public class ReadFile {
         ArrayList<String[]> newFileContent = new ArrayList<String[]>();
         String p=reader.readLine();
         while (p != null) {
-            String [] b = p.split(" ");
+            String [] b;
+            b = p.split("\\s+");
             newFileContent.add(b);
 
             p=reader.readLine();
@@ -110,7 +112,7 @@ public class ReadFile {
         ArrayList<String[]> newFileContent = new ArrayList<String[]>();
         String p=reader.readLine();
         while (p != null) {
-            String [] b = p.split(" ");
+            String [] b = p.split("\\s+");
             newFileContent.add(b);
 
             p=reader.readLine();
