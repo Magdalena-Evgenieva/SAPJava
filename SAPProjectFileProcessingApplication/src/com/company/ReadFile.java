@@ -15,12 +15,11 @@ public class ReadFile {
             String filename = input.next();
             File f = new File(filename);
             if (!f.isFile())
-                throw new IOException();
+                throw new FileNotFoundException();
 
             int option;
             do {
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
+
                 System.out.println("Choose one option:\n");
                 System.out.print("1.Switch words\n");
                 System.out.print("2.Switch lines\n");
@@ -28,16 +27,20 @@ public class ReadFile {
                option = input.nextInt();
                 switch (option){
                     case 1:
-                        System.out.println("Enter lines number and words index");
+                        System.out.println("Enter lines number and words index:");
+                        System.out.println("Enter first line and word index");
                         int firstLine = input.nextInt();
                         int firstLineWord = input.nextInt();
+                        System.out.println("Enter second line and word index");
                         int secondLine = input.nextInt();
                         int secondLineWord = input.nextInt();
                         switchWords(f,firstLine, firstLineWord,secondLine,secondLineWord);
                         break;
                     case 2:
-                        System.out.println("Enter number of lines to switch");
+                        System.out.println("Enter number of lines to switch:");
+                        System.out.println("Enter first line");
                         firstLine = input.nextInt();
+                        System.out.println("Enter second line");
                         secondLine = input.nextInt();
                         switchLines(f,firstLine,secondLine);
                         break;
@@ -51,12 +54,12 @@ public class ReadFile {
             } while (option < 3);
 
 
-        } catch (IOException e) {
-            System.out.println("Wrong filename!!");
+        } catch (FileNotFoundException e) {
+            System.err.println("Wrong filename!");
             e.printStackTrace();
         }
         catch (IndexOutOfBoundsException e) {
-            System.out.println(e);
+            System.err.println(e);
             e.printStackTrace();
         }
 
