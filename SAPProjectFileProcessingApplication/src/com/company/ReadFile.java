@@ -90,16 +90,8 @@ public class ReadFile {
 
         newFileContent.set(firstLine - 1, temp2);
         newFileContent.set(secondLine - 1, temp1);
-
-
-        PrintWriter writer = new PrintWriter(f.getAbsolutePath());
-        for (String[] line : newFileContent) {
-            for (String word : line) {
-                writer.print(word + " ");
-            }
-            writer.println();
-        }
-        writer.close();
+        
+        printWriter(f,newFileContent);
     }
 
 
@@ -128,7 +120,9 @@ public class ReadFile {
         newFileContent.get(firstLine - 1)[firstLineWord - 1 ] = newFileContent.get(secondLine - 1)[secondLineWord - 1];
         newFileContent.get(secondLine - 1)[secondLineWord - 1] = temp;
 
-
+        printWriter(f,newFileContent);
+    }
+    public static void printWriter(File f,ArrayList<String[]> newFileContent) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(f.getAbsolutePath());
         for (String[] line : newFileContent) {
             for (String word : line) {
@@ -137,5 +131,6 @@ public class ReadFile {
             writer.println();
         }
         writer.close();
+
     }
 }
